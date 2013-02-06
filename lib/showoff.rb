@@ -558,7 +558,7 @@ class ShowOff < Sinatra::Application
         Dir.glob("#{pres_dir}/*.css").each do |css_path|
           File.open(css_path) do |file|
             data = file.read
-            data.scan(/url\([\"\']?(?!https?:\/\/)(.*?)[\"\']?\)/).flatten.each do |path|
+            data.scan(/url\([\"\']?\/file\/(.*?)[\"\']?\)/).flatten.each do |path|
               path.gsub!(/(\#.*)$/, '') # get rid of the anchor
               path.gsub!(/(\?.*)$/, '') # get rid of the query
               logger.debug path
